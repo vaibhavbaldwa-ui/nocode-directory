@@ -1044,45 +1044,45 @@ const NoCodeDirectory = () => {
       </div>
 
       <footer className="bg-white border-t mt-12">
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h4 className="font-bold mb-3">About NoCode Directory</h4>
-              <p className="text-sm text-gray-600">Your comprehensive directory for discovering and comparing {tools.length}+ no-code tools across 20+ categories.</p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-3">Popular Comparisons</h4>
-              <ul className="text-sm text-gray-600 space-y-2">
-                <li><a href="#" className="hover:text-blue-600">Webflow vs Bubble</a></li>
-                <li><a href="#" className="hover:text-blue-600">Zapier vs Make</a></li>
-                <li><a href="#" className="hover:text-blue-600">Notion vs Airtable</a></li>
-                <li><a href="#" className="hover:text-blue-600">Shopify vs Gumroad</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-3">Top Categories</h4>
-              <ul className="text-sm text-gray-600 space-y-2">
-                <li><a href="#" className="hover:text-blue-600">Website Builders</a></li>
-                <li><a href="#" className="hover:text-blue-600">App Builders</a></li>
-                <li><a href="#" className="hover:text-blue-600">Automation Tools</a></li>
-                <li><a href="#" className="hover:text-blue-600">E-commerce Platforms</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-3">Resources</h4>
-              <ul className="text-sm text-gray-600 space-y-2">
-                <li><a href="#" className="hover:text-blue-600">Submit a Tool</a></li>
-                <li><a href="#" className="hover:text-blue-600">Advertise With Us</a></li>
-                <li><a href="#" className="hover:text-blue-600">Blog</a></li>
-                <li><a href="#" className="hover:text-blue-600">Contact</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t mt-8 pt-6 text-center text-sm text-gray-500">
-            © 2026 NoCode Directory. All rights reserved. • <a href="#" className="hover:text-blue-600">Privacy Policy</a> • <a href="#" className="hover:text-blue-600">Terms of Service</a>
-          </div>
-        </div>
-      </footer>
+  <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="grid md:grid-cols-4 gap-8">
+      <div>
+        <h4 className="font-bold mb-3">About NoCode Directory</h4>
+        <p className="text-sm text-gray-600">Your comprehensive directory for discovering and comparing {tools.length}+ no-code tools across 20+ categories.</p>
+      </div>
+      <div>
+        <h4 className="font-bold mb-3">Popular Comparisons</h4>
+        <ul className="text-sm text-gray-600 space-y-2">
+          <li><a href="#" className="hover:text-blue-600">Webflow vs Bubble</a></li>
+          <li><a href="#" className="hover:text-blue-600">Zapier vs Make</a></li>
+          <li><a href="#" className="hover:text-blue-600">Notion vs Airtable</a></li>
+          <li><a href="#" className="hover:text-blue-600">Shopify vs Gumroad</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 className="font-bold mb-3">Top Categories</h4>
+        <ul className="text-sm text-gray-600 space-y-2">
+          <li><a href="#" className="hover:text-blue-600">Website Builders</a></li>
+          <li><a href="#" className="hover:text-blue-600">App Builders</a></li>
+          <li><a href="#" className="hover:text-blue-600">Automation Tools</a></li>
+          <li><a href="#" className="hover:text-blue-600">E-commerce Platforms</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 className="font-bold mb-3">Resources</h4>
+        <ul className="text-sm text-gray-600 space-y-2">
+          <li><a href="/about" className="hover:text-blue-600">About Us</a></li>
+          <li><a href="/contact" className="hover:text-blue-600">Contact</a></li>
+          <li><a href="/privacy" className="hover:text-blue-600">Privacy Policy</a></li>
+          <li><a href="mailto:contact@nocodedirectory.live" className="hover:text-blue-600">Submit a Tool</a></li>
+        </ul>
+      </div>
+    </div>
+    <div className="border-t mt-8 pt-6 text-center text-sm text-gray-500">
+      © 2026 NoCode Directory. All rights reserved.
+    </div>
+  </div>
+</footer>
     </div>
   );
 };
