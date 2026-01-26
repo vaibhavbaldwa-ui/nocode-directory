@@ -25,3 +25,21 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Prevent horizontal scroll on mobile */
+body {
+  overflow-x: hidden;
+}
+
+/* Make sidebar scrollable on mobile */
+@media (max-width: 768px) {
+  aside {
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+  
+  /* Stack content on mobile instead of side-by-side */
+  .flex.gap-8 {
+    flex-direction: column;
+  }
+}

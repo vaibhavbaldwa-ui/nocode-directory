@@ -12,6 +12,14 @@ export default function App({ Component, pageProps }) {
      crossorigin="anonymous"></script>
         <script src="https://cdn.tailwindcss.com"></script>
       </Head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FB0V1ES4MQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FB0V1ES4MQ');
+</script>
       <Component {...pageProps} />
     </>
   )
