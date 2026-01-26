@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, ExternalLink, TrendingUp, Star, DollarSign, Users, Zap, Code, Layout, Database, Smartphone, Globe, ShoppingCart, Mail, BarChart, Image, Video, MessageSquare, Calendar, FileText, PieChart, Briefcase, Award } from 'lucide-react';
 
-// Comprehensive seed data - 49 no-code tools (removed duplicate Notion)
+// Comprehensive seed data - 50+ no-code tools
 const INITIAL_TOOLS = [
   // Website Builders
   {
@@ -662,10 +662,22 @@ const INITIAL_TOOLS = [
     users: "500K+",
     yearLaunched: 2014
   },
-
-  // Internal Tools
   {
     id: 49,
+    name: "Notion",
+    category: "Documentation",
+    description: "Create beautiful docs, wikis, and knowledge bases with databases and collaboration.",
+    pricing: "Free - $25/user/mo",
+    features: ["Docs", "Wiki", "Databases", "Collaboration", "AI", "Templates"],
+    logoUrl: "https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg",
+    website: "https://notion.so",
+    popularity: 96,
+    users: "30M+",
+    yearLaunched: 2016
+  },
+  // Internal Tools
+  {
+    id: 50,
     name: "Retool",
     category: "Internal Tools",
     description: "Build internal tools remarkably fast. Connect to databases and APIs.",
@@ -702,7 +714,7 @@ const CATEGORIES = [
   { name: "Internal Tools", icon: Code }
 ];
 
-export default function Home() {
+const NoCodeDirectory = () => {
   const [tools, setTools] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All Tools");
   const [searchQuery, setSearchQuery] = useState("");
@@ -753,77 +765,84 @@ export default function Home() {
     }
   };
 
-  // FIX #2: Support 3 tools comparison
   const generateComparison = () => {
-    if (compareTools.length < 2) return null;
-    
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 overflow-y-auto">
-        <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto p-6 my-8">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">
-              {compareTools.length === 2 
-                ? `${compareTools[0].name} vs ${compareTools[1].name}`
-                : `Comparing ${compareTools.length} Tools`
-              }
-            </h2>
-            <button 
-              onClick={() => setCompareMode(false)}
-              className="text-gray-500 hover:text-gray-700 text-3xl leading-none"
-            >×</button>
-          </div>
-          
-          <div className={`grid gap-6 ${compareTools.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
-            {compareTools.map(tool => (
-              <div key={tool.id} className="border rounded-lg p-4">
-                <img 
-                  src={tool.logoUrl} 
-                  alt={tool.name} 
-                  className="h-12 mb-4"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.style.display = 'none';
-                  }}
-                />
-                <h3 className="font-bold text-xl mb-2">{tool.name}</h3>
-                <p className="text-gray-600 mb-4 text-sm">{tool.description}</p>
-                
-                <div className="space-y-3 text-sm">
-                  <div><span className="font-semibold">Category:</span> {tool.category}</div>
-                  <div><span className="font-semibold">Pricing:</span> {tool.pricing}</div>
-                  <div><span className="font-semibold">Popularity:</span> {tool.popularity}/100</div>
-                  <div><span className="font-semibold">Users:</span> {tool.users}</div>
-                  <div>
-                    <span className="font-semibold">Key Features:</span>
-                    <ul className="list-disc list-inside mt-1">
-                      {tool.features.map((f, i) => <li key={i}>{f}</li>)}
-                    </ul>
-                  </div>
+  if (compareTools.length < 2) return null;
+  
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 overflow-y-auto">
+      <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto p-6 my-8">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold">
+            {compareTools.length === 2 
+              ? `${compareTools[0].name} vs ${compareTools[1].name}`
+              : `Comparing ${compareTools.length} Tools`
+            }
+          </h2>
+          <button 
+            onClick={() => setCompareMode(false)}
+            className="text-gray-500 hover:text-gray-700 text-3xl leading-none"
+          >×</button>
+        </div>
+        
+        <div className={`grid gap-6 ${compareTools.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
+          {compareTools.map(tool => (
+            <div key={tool.id} className="border rounded-lg p-4">
+              <img 
+                src={tool.logoUrl} 
+                alt={tool.name} 
+                className="h-12 mb-4"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.style.display = 'none';
+                }}
+              />
+              <h3 className="font-bold text-xl mb-2">{tool.name}</h3>
+              <p className="text-gray-600 mb-4 text-sm">{tool.description}</p>
+              
+              <div className="space-y-3 text-sm">
+                <div><span className="font-semibold">Category:</span> {tool.category}</div>
+                <div><span className="font-semibold">Pricing:</span> {tool.pricing}</div>
+                <div><span className="font-semibold">Popularity:</span> {tool.popularity}/100</div>
+                <div><span className="font-semibold">Users:</span> {tool.users}</div>
+                <div>
+                  <span className="font-semibold">Key Features:</span>
+                  <ul className="list-disc list-inside mt-1">
+                    {tool.features.map((f, i) => <li key={i}>{f}</li>)}
+                  </ul>
                 </div>
-                
-                <a 
-                  href={tool.website + "?ref=nocodedir"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 block w-full bg-blue-600 text-white text-center py-2 rounded hover:bg-blue-700"
-                >
-                  Visit {tool.name}
-                </a>
               </div>
-            ))}
-          </div>
-          
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-            <h3 className="font-bold mb-2">Quick Summary</h3>
-            <div className="text-sm space-y-2">
-              <p><strong>Most popular:</strong> {[...compareTools].sort((a, b) => b.popularity - a.popularity)[0].name} ({[...compareTools].sort((a, b) => b.popularity - a.popularity)[0].popularity}/100)</p>
-              <p><strong>Largest user base:</strong> {[...compareTools].sort((a, b) => parseInt(b.users) - parseInt(a.users))[0].name} ({[...compareTools].sort((a, b) => parseInt(b.users) - parseInt(a.users))[0].users})</p>
+              
+              <a 
+                href={tool.website + "?ref=nocodedir"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 block w-full bg-blue-600 text-white text-center py-2 rounded hover:bg-blue-700"
+              >
+                Visit {tool.name}
+              </a>
             </div>
+          ))}
+        </div>
+        
+        <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+          <h3 className="font-bold mb-2">Quick Summary</h3>
+          <div className="text-sm space-y-2">
+            <p><strong>Most popular:</strong> {[...compareTools].sort((a, b) => b.popularity - a.popularity)[0].name} ({[...compareTools].sort((a, b) => b.popularity - a.popularity)[0].popularity}/100)</p>
+            <p><strong>Largest user base:</strong> {[...compareTools].sort((a, b) => parseInt(b.users) - parseInt(a.users))[0].name} ({[...compareTools].sort((a, b) => parseInt(b.users) - parseInt(a.users))[0].users})</p>
           </div>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
+
+  const popularComparisons = [
+    { tool1: "Webflow", tool2: "Bubble", category: "Website vs App Builder" },
+    { tool1: "Notion", tool2: "Airtable", category: "Database" },
+    { tool1: "Zapier", tool2: "Make", category: "Automation" },
+    { tool1: "Shopify", tool2: "Gumroad", category: "E-commerce" },
+    { tool1: "Figma", tool2: "Canva", category: "Design" }
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -866,9 +885,9 @@ export default function Home() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row gap-8">
-          <aside className="w-full md:w-64 flex-shrink-0">
-            <div className="bg-white rounded-lg p-4 md:sticky md:top-24">
+        <div className="flex gap-8">
+          <aside className="w-64 flex-shrink-0">
+            <div className="bg-white rounded-lg p-4 sticky top-24">
               <h3 className="font-bold mb-4 text-gray-900">Categories</h3>
               <div className="space-y-1 max-h-[60vh] overflow-y-auto">
                 {categoryCounts.map(cat => {
@@ -926,21 +945,11 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredTools.map(tool => (
                 <div key={tool.id} className="bg-white rounded-lg border hover:shadow-lg transition p-5">
                   <div className="flex items-start justify-between mb-3">
-                    {/* FIX #1: Handle broken logos with proper encoding */}
-                    <img 
-                      src={tool.logoUrl} 
-                      alt={tool.name} 
-                      className="h-10 w-auto"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        const letter = tool.name.charAt(0);
-                        e.target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%234F46E5'/%3E%3Ctext x='50' y='55' font-size='40' fill='white' text-anchor='middle' dominant-baseline='middle'%3E${letter}%3C/text%3E%3C/svg%3E`;
-                      }}
-                    />
+                    <img src={tool.logoUrl} alt={tool.name} className="h-10 w-auto" />
                     <div className="flex items-center gap-1 text-yellow-500">
                       <Star className="w-4 h-4 fill-current" />
                       <span className="text-xs font-semibold">{tool.popularity}</span>
@@ -975,8 +984,8 @@ export default function Home() {
                   </div>
                   
                   <div className="flex gap-2">
-                    
-                      href={tool.website + "?ref=nocodedir"}
+                    <a
+                      href={`${tool.website}?ref=nocodedir`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1 bg-blue-600 text-white text-sm text-center py-2 rounded hover:bg-blue-700 flex items-center justify-center gap-1"
@@ -1024,7 +1033,35 @@ export default function Home() {
 
         <div className="bg-white rounded-lg p-8 mb-8">
           <h2 className="text-2xl font-bold mb-6">Popular Comparisons</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
+            {popularComparisons.map((comp, i) => (
+              <a 
+                key={i}
+                href={`#compare-${comp.tool1.toLowerCase()}-${comp.tool2.toLowerCase()}`}
+                className="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition"
+              >
+                <div>
+                  <h3 className="font-semibold text-gray-900">{comp.tool1} vs {comp.tool2}</h3>
+                  <p className="text-sm text-gray-600">{comp.category}</p>
+                </div>
+                <ExternalLink className="w-4 h-4 text-gray-400" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <footer className="bg-white border-t mt-12">
+  <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="grid md:grid-cols-4 gap-8">
+      <div>
+        <h4 className="font-bold mb-3">About NoCode Directory</h4>
+        <p className="text-sm text-gray-600">Your comprehensive directory for discovering and comparing {tools.length}+ no-code tools across 20+ categories.</p>
+      </div>
+      <div>
+        <h4 className="font-bold mb-3">Popular Comparisons</h4>
+        <ul className="text-sm text-gray-600 space-y-2">
+          <li>
             <button 
               onClick={() => {
                 const webflow = tools.find(t => t.name === "Webflow");
@@ -1034,33 +1071,12 @@ export default function Home() {
                   setCompareMode(true);
                 }
               }}
-              className="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition text-left"
+              className="hover:text-blue-600 text-left"
             >
-              <div>
-                <h3 className="font-semibold text-gray-900">Webflow vs Bubble</h3>
-                <p className="text-sm text-gray-600">Website vs App Builder</p>
-              </div>
-              <ExternalLink className="w-4 h-4 text-gray-400" />
+              Webflow vs Bubble
             </button>
-            
-            <button 
-              onClick={() => {
-                const notion = tools.find(t => t.name === "Notion");
-                const airtable = tools.find(t => t.name === "Airtable");
-                if (notion && airtable) {
-                  setCompareTools([notion, airtable]);
-                  setCompareMode(true);
-                }
-              }}
-              className="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition text-left"
-            >
-              <div>
-                <h3 className="font-semibold text-gray-900">Notion vs Airtable</h3>
-                <p className="text-sm text-gray-600">Database</p>
-              </div>
-              <ExternalLink className="w-4 h-4 text-gray-400" />
-            </button>
-
+          </li>
+          <li>
             <button 
               onClick={() => {
                 const zapier = tools.find(t => t.name === "Zapier");
@@ -1070,15 +1086,27 @@ export default function Home() {
                   setCompareMode(true);
                 }
               }}
-              className="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition text-left"
+              className="hover:text-blue-600 text-left"
             >
-              <div>
-                <h3 className="font-semibold text-gray-900">Zapier vs Make</h3>
-                <p className="text-sm text-gray-600">Automation</p>
-              </div>
-              <ExternalLink className="w-4 h-4 text-gray-400" />
+              Zapier vs Make
             </button>
-
+          </li>
+          <li>
+            <button 
+              onClick={() => {
+                const notion = tools.find(t => t.name === "Notion");
+                const airtable = tools.find(t => t.name === "Airtable");
+                if (notion && airtable) {
+                  setCompareTools([notion, airtable]);
+                  setCompareMode(true);
+                }
+              }}
+              className="hover:text-blue-600 text-left"
+            >
+              Notion vs Airtable
+            </button>
+          </li>
+          <li>
             <button 
               onClick={() => {
                 const shopify = tools.find(t => t.name === "Shopify");
@@ -1088,143 +1116,67 @@ export default function Home() {
                   setCompareMode(true);
                 }
               }}
-              className="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition text-left"
+              className="hover:text-blue-600 text-left"
             >
-              <div>
-                <h3 className="font-semibold text-gray-900">Shopify vs Gumroad</h3>
-                <p className="text-sm text-gray-600">E-commerce</p>
-              </div>
-              <ExternalLink className="w-4 h-4 text-gray-400" />
+              Shopify vs Gumroad
             </button>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
-
-      {/* FIX #3 & #4: Working footer links */}
-      <footer className="bg-white border-t mt-12">
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h4 className="font-bold mb-3">About NoCode Directory</h4>
-              <p className="text-sm text-gray-600">Your comprehensive directory for discovering and comparing {tools.length}+ no-code tools across 20+ categories.</p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-3">Popular Comparisons</h4>
-              <ul className="text-sm text-gray-600 space-y-2">
-                <li>
-                  <button 
-                    onClick={() => {
-                      const webflow = tools.find(t => t.name === "Webflow");
-                      const bubble = tools.find(t => t.name === "Bubble");
-                      if (webflow && bubble) {
-                        setCompareTools([webflow, bubble]);
-                        setCompareMode(true);
-                      }
-                    }}
-                    className="hover:text-blue-600 text-left"
-                  >
-                    Webflow vs Bubble
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    onClick={() => {
-                      const zapier = tools.find(t => t.name === "Zapier");
-                      const make = tools.find(t => t.name === "Make");
-                      if (zapier && make) {
-                        setCompareTools([zapier, make]);
-                        setCompareMode(true);
-                      }
-                    }}
-                    className="hover:text-blue-600 text-left"
-                  >
-                    Zapier vs Make
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    onClick={() => {
-                      const notion = tools.find(t => t.name === "Notion");
-                      const airtable = tools.find(t => t.name === "Airtable");
-                      if (notion && airtable) {
-                        setCompareTools([notion, airtable]);
-                        setCompareMode(true);
-                      }
-                    }}
-                    className="hover:text-blue-600 text-left"
-                  >
-                    Notion vs Airtable
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    onClick={() => {
-                      const shopify = tools.find(t => t.name === "Shopify");
-                      const gumroad = tools.find(t => t.name === "Gumroad");
-                      if (shopify && gumroad) {
-                        setCompareTools([shopify, gumroad]);
-                        setCompareMode(true);
-                      }
-                    }}
-                    className="hover:text-blue-600 text-left"
-                  >
-                    Shopify vs Gumroad
-                  </button>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-3">Top Categories</h4>
-              <ul className="text-sm text-gray-600 space-y-2">
-                <li>
-                  <button 
-                    onClick={() => setSelectedCategory("Website Builder")}
-                    className="hover:text-blue-600 text-left"
-                  >
-                    Website Builders
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    onClick={() => setSelectedCategory("App Builder")}
-                    className="hover:text-blue-600 text-left"
-                  >
-                    App Builders
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    onClick={() => setSelectedCategory("Automation")}
-                    className="hover:text-blue-600 text-left"
-                  >
-                    Automation Tools
-                  </button>
-                </li>
-                <li>
-                  <button 
-                    onClick={() => setSelectedCategory("E-commerce")}
-                    className="hover:text-blue-600 text-left"
-                  >
-                    E-commerce Platforms
-                  </button>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-3">Resources</h4>
-              <ul className="text-sm text-gray-600 space-y-2">
-                <li><a href="/about" className="hover:text-blue-600">About Us</a></li>
-                <li><a href="/contact" className="hover:text-blue-600">Contact</a></li>
-                <li><a href="/privacy" className="hover:text-blue-600">Privacy Policy</a></li>
-                <li><a href="mailto:contact@nocodedirectory.live" className="hover:text-blue-600">Submit a Tool</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t mt-8 pt-6 text-center text-sm text-gray-500">
-            © 2026 NoCode Directory. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <div>
+        <h4 className="font-bold mb-3">Top Categories</h4>
+        <ul className="text-sm text-gray-600 space-y-2">
+          <li>
+            <button 
+              onClick={() => setSelectedCategory("Website Builder")}
+              className="hover:text-blue-600 text-left"
+            >
+              Website Builders
+            </button>
+          </li>
+          <li>
+            <button 
+              onClick={() => setSelectedCategory("App Builder")}
+              className="hover:text-blue-600 text-left"
+            >
+              App Builders
+            </button>
+          </li>
+          <li>
+            <button 
+              onClick={() => setSelectedCategory("Automation")}
+              className="hover:text-blue-600 text-left"
+            >
+              Automation Tools
+            </button>
+          </li>
+          <li>
+            <button 
+              onClick={() => setSelectedCategory("E-commerce")}
+              className="hover:text-blue-600 text-left"
+            >
+              E-commerce Platforms
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 className="font-bold mb-3">Resources</h4>
+        <ul className="text-sm text-gray-600 space-y-2">
+          <li><a href="/about" className="hover:text-blue-600">About Us</a></li>
+          <li><a href="/contact" className="hover:text-blue-600">Contact</a></li>
+          <li><a href="/privacy" className="hover:text-blue-600">Privacy Policy</a></li>
+          <li><a href="mailto:contact@nocodedirectory.live" className="hover:text-blue-600">Submit a Tool</a></li>
+        </ul>
+      </div>
+    </div>
+    <div className="border-t mt-8 pt-6 text-center text-sm text-gray-500">
+      © 2026 NoCode Directory. All rights reserved.
+    </div>
+  </div>
+</footer>
     </div>
   );
-}
+};
+
+export default NoCodeDirectory;
