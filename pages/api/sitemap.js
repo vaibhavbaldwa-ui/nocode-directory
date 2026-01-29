@@ -2647,7 +2647,7 @@ const CATEGORIES = [
 ];
 
 export default function handler(req, res) {
-  const baseUrl = 'https://nocodedirectory.live';
+  const baseUrl = 'https://www.nocodedirectory.live';
   
   // Static pages
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://nocodedirectory.live/</loc>
+    <loc>https://www.nocodedirectory.live/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://nocodedirectory.live/about</loc>
+    <loc>https://www.nocodedirectory.live/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://nocodedirectory.live/contact</loc>
+    <loc>https://www.nocodedirectory.live/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://nocodedirectory.live/privacy</loc>
+    <loc>https://www.nocodedirectory.live/privacy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
